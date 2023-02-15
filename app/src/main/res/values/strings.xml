@@ -14,5 +14,8 @@
     <string name="my_tasks">My Tasks</string>
     <string name="image_on_main">Image on Main</string>
     <string name="all_tasks">All Tasks</string>
+    <string name="submitted">Submitted!</string>
+    <string name="mytask">My Task</string>
+    <string name="taskdescription">Task Description</string>
 
 </resources>
