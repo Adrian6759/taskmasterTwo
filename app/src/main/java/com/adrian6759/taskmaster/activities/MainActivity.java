@@ -26,10 +26,14 @@ public class MainActivity extends AppCompatActivity {
             //Step 4: Define logic to be run
             startActivity(goToAddTaskIntent);
         });
-
-
-
-
-
+        Button allTasksIntentButton = (Button) findViewById(R.id.AllTasksIntentButton);
+        //Step 2: Set on Click Listener
+        allTasksIntentButton.setOnClickListener(v -> {
+            //Step:3 Define Our onClick() Callback
+            Intent goToAllTasksIntent = new Intent(this, AllTasksActivity.class);
+            //Step 4: Define logic to be run
+            startActivity(goToAllTasksIntent);
+        });
     }
-}
+    }
+
