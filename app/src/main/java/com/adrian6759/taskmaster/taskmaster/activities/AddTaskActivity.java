@@ -1,4 +1,4 @@
-package com.adrian6759.taskmaster.activities;
+package com.adrian6759.taskmaster.taskmaster.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

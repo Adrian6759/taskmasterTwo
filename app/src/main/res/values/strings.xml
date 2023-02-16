@@ -32,5 +32,11 @@
     <string name="usernameEdit">Username</string>
     <string name="usernameEditable">username</string>
     <string name="no_input">No Input</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tasks">tasks</string>
+    <string name="textview">TextView</string>
+    <string name="state">state</string>
+    <string name="body">body</string>
 
 </resources>

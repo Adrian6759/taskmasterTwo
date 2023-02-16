@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".taskmaster.activities.MainActivity">
 
 
     <TextView
@@ -12,10 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="248dp"
         android:text="@string/my_tasks"
-        android:textSize="24sp"
+        android:textSize="28sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,14 +27,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="115dp"
         android:layout_marginEnd="79dp"
         android:layout_marginBottom="52dp"
         android:text="@string/add_task_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/allTasksIntentButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityMainTaskThreeDetailButton"
         tools:ignore="NotSibling" />
 
     <Button
@@ -73,86 +72,42 @@
         tools:srcCompat="@android:drawable/ic_menu_manage" />
 
     <TextView
-        android:id="@+id/activityMainTaskOneDetailButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="249dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="54dp"
-        android:text="@string/task_1"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/activityMainTaskTwoDetailButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.355" />
-
-    <TextView
-        android:id="@+id/activityMainTaskTwoDetailButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/task_2"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/activityMainTaskThreeDetailButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityMainTaskOneDetailButton" />
-
-    <TextView
-        android:id="@+id/activityMainTaskThreeDetailButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="54dp"
-        android:text="@string/task_3"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/allTasksIntentButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.877" />
-
-    <TextView
         android:id="@+id/activityMainUsernameDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="156dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginBottom="116dp"
         android:contentDescription="@string/editable_username"
         android:hint="@string/usernameEdit"
         android:text="@string/username"
+        android:textAllCaps="false"
+        android:textColor="#315277"
         android:textColorHint="#131010"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/activityMainRecycleViewTasks"
         app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="136dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="21dp"
+        android:shadowColor="#4493C8"
         android:text="@string/welcome"
+        android:textColor="#13667C"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/activityMainTaskOneDetailButton"
-        app:layout_constraintEnd_toStartOf="@+id/activityMainUsernameDisplay"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="1.0" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toStartOf="@+id/activityMainUsernameDisplay" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activityMainRecycleViewTasks"
+        android:layout_width="266dp"
+        android:layout_height="423dp"
+        android:layout_marginTop="116dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        tools:layout_editor_absoluteX="34dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
