@@ -1,4 +1,4 @@
-package com.adrian6759.taskmaster.activities;
+package com.adrian6759.taskmaster.taskmaster;
 
 
 import static androidx.test.espresso.Espresso.onView;
@@ -16,6 +16,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import com.adrian6759.taskmaster.R;
+import com.adrian6759.taskmaster.taskmaster.activities.MainActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

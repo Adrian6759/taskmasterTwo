@@ -15,3 +15,9 @@
 ![Settings](app/src/main/images/Settings.png)
 
 ![Task Details](app/src/main/images/TaskDetails.png)
+
+## Day Three
+
+![Home Page](app/src/main/images/HomePageDayThree.png)
+
+![Task Details](app/src/main/images/TaskDetailDayThree.png)

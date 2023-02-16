@@ -4,25 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.TaskDetail">
+    tools:context=".taskmaster.activities.TaskDetail">
 
     <TextView
-        android:id="@+id/activityTaskDetailViewText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/activityTaskTitleViewText"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="540dp"
-        android:text="@string/task_details"
-        android:textSize="34sp"
+        android:text="Title"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.213" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/activityTaskBodyViewText"
         android:layout_width="319dp"
         android:layout_height="230dp"
         android:layout_marginStart="24dp"
@@ -33,6 +35,19 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityTaskDetailViewText" />
+        app:layout_constraintTop_toBottomOf="@+id/activityTaskTitleViewText"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/activityTaskStateViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="122dp"
+        android:layout_marginTop="61dp"
+        android:text="State"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityTaskBodyViewText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,9 @@
-package com.adrian6759.taskmaster.activities;
+package com.adrian6759.taskmaster.taskmaster.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.EditText;
