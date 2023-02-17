@@ -6,53 +6,58 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".taskmaster.activities.MainActivity">
 
-<TextView
-    android:id="@+id/textView2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="96dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="72dp"
-    android:text="@string/add_task"
-    android:textSize="24sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.059" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="72dp"
+        android:text="@string/add_task"
+        android:textColor="#46287C"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.059" />
 
-<Button
-    android:id="@+id/AddTaskButton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="32dp"
-    android:layout_marginTop="144dp"
-    android:layout_marginEnd="32dp"
-    android:layout_marginBottom="32dp"
-    android:text="@string/add_task_button"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView" />
+    <Button
+        android:id="@+id/AddTaskButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/add_task_button"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-<TextView
-    android:id="@+id/textView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="144dp"
-    android:layout_marginBottom="144dp"
-    android:text="@string/task_title"
-    app:layout_constraintBottom_toTopOf="@+id/AddTaskButton"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.116"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="144dp"
+        android:text="@string/task_title"
+        android:textColor="#6D207A"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/AddTaskButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextTaskTitle"
         android:layout_width="368dp"
         android:layout_height="72dp"
         android:layout_marginStart="24dp"
@@ -64,7 +69,6 @@ tools:context=".taskmaster.activities.MainActivity">
         android:ems="10"
         android:hint="@string/mytask"
         android:inputType="textPersonName"
-        android:text="@string/my_task"
         app:layout_constraintBottom_toTopOf="@+id/AddTaskButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -74,9 +78,9 @@ tools:context=".taskmaster.activities.MainActivity">
         tools:ignore="ContentDescription,EditableContentDescCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editTextTaskBody"
         android:layout_width="371dp"
-        android:layout_height="63dp"
+        android:layout_height="72dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="89dp"
         android:layout_marginEnd="24dp"
@@ -85,28 +89,29 @@ tools:context=".taskmaster.activities.MainActivity">
         android:ems="10"
         android:hint="@string/taskdescription"
         android:inputType="textPersonName"
-        android:text="@string/do_something"
         app:layout_constraintBottom_toTopOf="@+id/AddTaskButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTaskTitle"
         app:layout_constraintVertical_bias="1.0" />
 
-<TextView
-    android:id="@+id/textView3"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="24dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="207dp"
-    android:text="@string/task_description"
-    app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-    app:layout_constraintVertical_bias="0.173" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="207dp"
+        android:text="@string/task_description"
+        android:textColor="#522C97"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTaskBody"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTaskTitle"
+        app:layout_constraintVertical_bias="0.173" />
 
 <TextView
     android:id="@+id/textView4"
@@ -132,5 +137,14 @@ tools:context=".taskmaster.activities.MainActivity">
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AddTaskButton" />
+
+    <Spinner
+        android:id="@+id/TaskStateSpinner"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTaskBody" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
