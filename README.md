@@ -21,3 +21,9 @@
 ![Home Page](app/src/main/images/HomePageDayThree.png)
 
 ![Task Details](app/src/main/images/TaskDetailDayThree.png)
+
+## Day Four
+
+![Home Page](app/src/main/images/HomePageDatFour.png)
+
+![Add Task](app/src/main/images/AddTaskDayFour.png)
