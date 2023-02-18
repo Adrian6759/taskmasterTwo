@@ -46,26 +46,25 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
     public void onBindViewHolder(@NonNull TasksViewHolder holder, int position) {
         TextView taskFragTitleView = holder.itemView.findViewById(R.id.TasksFragmentTextViewTitle);
         TextView tasksFragNameViewBody = holder.itemView.findViewById(R.id.TasksFragmentTextViewBody);
-//        TextView tasksFragNameViewState = holder.itemView.findViewById(R.id.TasksFragmentTextViewState);
+        TextView tasksFragNameViewState = holder.itemView.findViewById(R.id.TasksFragmentTextViewState);
         String tasksTitle = tasksList.get(position).getTitle();
         String tasksBody = tasksList.get(position).getBody();
-//        Task.TaskStateEnum tasksState = tasksList.get(position).getState();
+        String tasksState = String.valueOf(tasksList.get(position).getState());
         taskFragTitleView.setText((position+1) + ". " + tasksTitle);
         tasksFragNameViewBody.setText(tasksBody);
-//        tasksFragNameViewState.setContentDescription(tasksState);
+        tasksFragNameViewState.setText(tasksState);
         View taskViewHolder = holder.itemView;
 
         taskViewHolder.setOnClickListener(v -> {
             Intent goToTaskDetailsIntent = new Intent(callingActivity, TaskDetail.class);
             goToTaskDetailsIntent.putExtra(TASKS_TITLE_TAG, tasksTitle);
             goToTaskDetailsIntent.putExtra(TASKS_BODY_TAG, tasksBody);
-        //            goToTasksDetailsIntent.putExtra(TASKS_STATE_TAG, tasksState);
+            goToTaskDetailsIntent.putExtra(TASKS_STATE_TAG, tasksState);
             callingActivity.startActivity(goToTaskDetailsIntent);
         });
     }
 
     @Override
-    //For testing purposes, hard code a large number of items
     public int getItemCount() {
 //        return 10;
         //Make the size of the list dynamic
