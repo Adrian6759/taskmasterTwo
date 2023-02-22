@@ -5,12 +5,13 @@ import static com.adrian6759.taskmaster.taskmaster.activities.SettingsActivity.U
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
+
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,16 +19,19 @@ import android.widget.TextView;
 
 import com.adrian6759.taskmaster.R;
 import com.adrian6759.taskmaster.taskmaster.adapter.TasksRecyclerViewAdapter;
-import com.adrian6759.taskmaster.taskmaster.database.TaskMasterDatabase;
-import com.adrian6759.taskmaster.taskmaster.models.Task;
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.TaskStateEnum;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TASKS_ADD_EXTRA_TAG = "taskDetail";
-    TaskMasterDatabase taskMasterDatabase;
     public static final String DATABASE_NAME = "TaskMaster";
+    public static final String TAG = "mainActivity";
         List<Task> tasksList;
         TasksRecyclerViewAdapter adapter;
 
@@ -36,20 +40,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setupRecyclerView();
-        taskMasterDatabase = Room.databaseBuilder(
-                        getApplicationContext(),
-                        TaskMasterDatabase.class,
-                        DATABASE_NAME)
-                .fallbackToDestructiveMigration() //Don't use this in production
-                .allowMainThreadQueries()
-                .build();
 
-        tasksList = taskMasterDatabase.taskDao().findAll();
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-//
-            String userName = preferences.getString(USER_USERNAME_TAG, "no username");
-            ((TextView)findViewById(R.id.activityMainUsernameDisplay)).setText(userName);
+
+        //HARDCODE Test for RecycleView
+//        tasksList = new ArrayList<>();
+//        Task newTask = Task.builder()
+//                .title("Task 1")
+//                .body("Do the task")
+//                .state(TaskStateEnum.Assigned)
+//                .build();
+
+//        tasksList.add(newTask);
 
         setupRecyclerView();
         setupButtons();
@@ -57,17 +58,33 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onResume() {
             super.onResume();
-            tasksList.clear();
-            tasksList.addAll(taskMasterDatabase.taskDao().findAll());
-            adapter.notifyDataSetChanged();
+            Amplify.API.query(
+                    ModelQuery.list(Task.class),
+                    success -> {
+                        tasksList.clear();
+                        Log.i(TAG, "Read tasks successfully!");
+                        for (Task databaseTask : success.getData()) {
+                            tasksList.add(databaseTask);
+                        }
+                        runOnUiThread(() -> adapter.notifyDataSetChanged());
+                    },
+                        failure -> Log.e(TAG, "Failed to read task from the Database")
 
-//
+            );
+//            tasksList.addAll(taskMasterDatabase.taskDao().findAll());
+
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+            String userName = preferences.getString(USER_USERNAME_TAG, "no username");
+            ((TextView)findViewById(R.id.activityMainUsernameDisplay)).setText(userName);
+
 
         }
 
     //Grab the recyclerview
     public void setupRecyclerView() {
-
+        tasksList = new ArrayList<>();
 
         RecyclerView tasksRecyclerView = findViewById(R.id.activityMainRecycleViewTasks);
         //Set the layout manager
@@ -111,33 +128,3 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
-//    TextView taskDetailButtonOne = (TextView) findViewById(R.id.activityMainTaskOneDetailButton);
-////Step 2: Set on Click Listener
-//        taskDetailButtonOne.setOnClickListener(v -> {
-//                String taskDetail = ((TextView) findViewById(R.id.activityMainTaskOneDetailButton)).getText().toString();
-//                //Step:3 Define Our onClick() Callback
-//                Intent goToTaskDetailIntent = new Intent(this, TaskDetail.class);
-//        goToTaskDetailIntent.putExtra(TASKS_ADD_EXTRA_TAG, taskDetail);
-//        //Step 4: Define logic to be run
-//        startActivity(goToTaskDetailIntent);
-//        });
-//        TextView taskDetailButtonTwo = (TextView) findViewById(R.id.activityMainTaskTwoDetailButton);
-//        //Step 2: Set on Click Listener
-//        taskDetailButtonTwo.setOnClickListener(v -> {
-//        String taskDetail = ((TextView) findViewById(R.id.activityMainTaskTwoDetailButton)).getText().toString();
-//        //Step:3 Define Our onClick() Callback
-//        Intent goToTaskDetailIntent = new Intent(this, TaskDetail.class);
-//        goToTaskDetailIntent.putExtra(TASKS_ADD_EXTRA_TAG, taskDetail);
-//        //Step 4: Define logic to be run
-//        startActivity(goToTaskDetailIntent);
-//        });
-//        TextView taskDetailButtonThree = (TextView) findViewById(R.id.activityMainTaskThreeDetailButton);
-//        //Step 2: Set on Click Listener
-//        taskDetailButtonThree.setOnClickListener(v -> {
-//        String taskDetail = ((TextView) findViewById(R.id.activityMainTaskThreeDetailButton)).getText().toString();
-//        //Step:3 Define Our onClick() Callback
-//        Intent goToTaskDetailIntent = new Intent(this, TaskDetail.class);
-//        goToTaskDetailIntent.putExtra(TASKS_ADD_EXTRA_TAG, taskDetail);
-//        //Step 4: Define logic to be run
-//        startActivity(goToTaskDetailIntent);
-//        });
