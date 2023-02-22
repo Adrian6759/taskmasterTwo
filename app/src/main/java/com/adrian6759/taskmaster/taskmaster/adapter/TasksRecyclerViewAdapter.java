@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.adrian6759.taskmaster.R;
 import com.adrian6759.taskmaster.taskmaster.activities.TaskDetail;
-import com.adrian6759.taskmaster.taskmaster.models.Task;
+import com.amplifyframework.datastore.generated.model.Task;
 
 import java.util.List;
 
@@ -80,20 +80,4 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
         }
     }
 }
-//        TextView tasksFragNameViewTitle = holder.itemView.findViewById(R.id.TasksFragmentTextViewTitle);
-//        TextView tasksFragNameViewBody = holder.itemView.findViewById(R.id.TasksFragmentTextViewBody);
-//        TextView tasksFragNameViewState = holder.itemView.findViewById(R.id.TasksFragmentTextViewState);
-//        String tasksTitle = tasksList.get(position).getTitle();
-//        String tasksBody = tasksList.get(position).getBody();
-//        Task.TaskStateEnum tasksState = tasksList.get(position).getState();
-//        tasksFragNameViewTitle.setText(position + ". " + tasksTitle);
-//        tasksFragNameViewBody.setText(tasksBody);
-//        tasksFragNameViewState.setContentDescription(tasksState);
-//        View tasksViewHolder = holder.itemView;
-//        tasksViewHolder.setOnClickListener(v -> {
-//            Intent goToTasksDetailsIntent = new Intent(callingActivity, TaskDetail.class);
-//            goToTasksDetailsIntent.putExtra(TASKS_TITLE_TAG, tasksTitle);
-//            goToTasksDetailsIntent.putExtra(TASKS_BODY_TAG, tasksBody);
-//            goToTasksDetailsIntent.putExtra(TASKS_STATE_TAG, tasksState);
-//            callingActivity.startActivity(goToTasksDetailsIntent);
-//        });
+
