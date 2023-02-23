@@ -1,4 +1,76 @@
 # this is an auto generated file. This will be overwritten
+mutation CreateTaskTeam(
+  $input: CreateTaskTeamInput!
+  $condition: ModelTaskTeamConditionInput
+) {
+  createTaskTeam(input: $input, condition: $condition) {
+    id
+    name
+    email
+    task {
+      items {
+        id
+        title
+        body
+        taskTeamId
+        state
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateTaskTeam(
+  $input: UpdateTaskTeamInput!
+  $condition: ModelTaskTeamConditionInput
+) {
+  updateTaskTeam(input: $input, condition: $condition) {
+    id
+    name
+    email
+    task {
+      items {
+        id
+        title
+        body
+        taskTeamId
+        state
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteTaskTeam(
+  $input: DeleteTaskTeamInput!
+  $condition: ModelTaskTeamConditionInput
+) {
+  deleteTaskTeam(input: $input, condition: $condition) {
+    id
+    name
+    email
+    task {
+      items {
+        id
+        title
+        body
+        taskTeamId
+        state
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateTask(
   $input: CreateTaskInput!
   $condition: ModelTaskConditionInput
@@ -7,7 +79,18 @@ mutation CreateTask(
     id
     title
     body
+    taskTeamId
     state
+    taskTeam {
+      id
+      name
+      email
+      task {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -20,7 +103,18 @@ mutation UpdateTask(
     id
     title
     body
+    taskTeamId
     state
+    taskTeam {
+      id
+      name
+      email
+      task {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -33,7 +127,18 @@ mutation DeleteTask(
     id
     title
     body
+    taskTeamId
     state
+    taskTeam {
+      id
+      name
+      email
+      task {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
