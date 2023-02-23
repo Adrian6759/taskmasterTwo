@@ -1,5 +1,6 @@
 package com.adrian6759.taskmaster.taskmaster.activities;
 
+import static com.adrian6759.taskmaster.taskmaster.activities.SettingsActivity.CHOOSE_TEAM_TAG;
 import static com.adrian6759.taskmaster.taskmaster.activities.SettingsActivity.USER_USERNAME_TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "mainActivity";
         List<Task> tasksList;
         TasksRecyclerViewAdapter adapter;
+    private String teamChosen;
 
 
     @Override
@@ -58,16 +62,18 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onResume() {
             super.onResume();
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            String teamChosen = preferences.getString(CHOOSE_TEAM_TAG, "no team chosen");
             Amplify.API.query(
                     ModelQuery.list(Task.class),
                     success -> {
                         tasksList.clear();
                         Log.i(TAG, "Read tasks successfully!");
                         for (Task databaseTask : success.getData()) {
-//                            String selectedTaskTeamStringName = "TaskTeam1";
+                            String selectedTaskTeamStringName = teamChosen;
                             if (databaseTask.getTaskTeam() != null){
 
-//                            if(databaseTask.getTaskTeam().getName().equals(selectedTaskTeamStringName))
+                            if(databaseTask.getTaskTeam().getName().equals(selectedTaskTeamStringName))
                             tasksList.add(databaseTask);
                             }
                         }
@@ -76,15 +82,14 @@ public class MainActivity extends AppCompatActivity {
                         failure -> Log.e(TAG, "Failed to read task from the Database")
 
             );
-//            tasksList.addAll(taskMasterDatabase.taskDao().findAll());
 
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
             String userName = preferences.getString(USER_USERNAME_TAG, "no username");
             ((TextView)findViewById(R.id.activityMainUsernameDisplay)).setText(userName);
-
-
+//            String teamChosen = preferences.getString(CHOOSE_TEAM_TAG, "no team chosen");
+            ((TextView)findViewById(R.id.taskTeamChosenTexttView)).setText(teamChosen);
         }
 
     //Grab the recyclerview
