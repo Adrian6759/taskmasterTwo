@@ -2,6 +2,7 @@ package com.adrian6759.taskmaster.taskmaster.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -10,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+
 
 import com.adrian6759.taskmaster.R;
 import com.amplifyframework.api.graphql.model.ModelMutation;
@@ -29,8 +30,9 @@ import java.util.concurrent.ExecutionException;
 public class SettingsActivity extends AppCompatActivity {
     SharedPreferences preferences;
     public static final String USER_USERNAME_TAG = "userName";
+    public static final String CHOOSE_TEAM_TAG = "ChooseTeam";
     public static final String TAG = "SettingsActivity";
-        CompletableFuture<List<TaskTeam>> taskTeamFuture = new CompletableFuture<>();
+    CompletableFuture<List<TaskTeam>> taskTeamFuture = new CompletableFuture<>();
     Spinner chooseTeamSpinner;
     ArrayList<String> teamNames;
     ArrayList<TaskTeam> taskTeam;
@@ -67,18 +69,8 @@ public class SettingsActivity extends AppCompatActivity {
         String userName = preferences.getString(USER_USERNAME_TAG, "");
         EditText editUsernameText = findViewById(R.id.activitySettingsEditTextUsername);
         editUsernameText.setText(userName);
+        setupSaveButton();
 
-
-        Button saveButton = findViewById(R.id.activitySettingsSaveButton);
-        saveButton.setOnClickListener(v -> {
-            SharedPreferences.Editor preferencesEditor = preferences.edit();
-            String usernameString = editUsernameText.getText().toString();
-
-            preferencesEditor.putString(USER_USERNAME_TAG, usernameString);
-            preferencesEditor.apply();
-
-            Snackbar.make(findViewById(R.id.activitySettingsPage), "Username updated!", Snackbar.LENGTH_SHORT).show();
-        });
     }
     public void setupTaskSpinners() {
         chooseTeamSpinner.setAdapter(new ArrayAdapter<>(
@@ -88,33 +80,19 @@ public class SettingsActivity extends AppCompatActivity {
         ));
 
     }
-    public void setupSaveButton(){
-
-        findViewById(R.id.AddTaskButton).setOnClickListener(v -> {
+    public void setupSaveButton() {
+        Button saveButton = findViewById(R.id.activitySettingsSaveButton);
+        saveButton.setOnClickListener(v -> {
+            EditText editUsernameText = findViewById(R.id.activitySettingsEditTextUsername);
             String selectedTaskTeamStringName = chooseTeamSpinner.getSelectedItem().toString();
-            try {
-                taskTeam = (ArrayList<TaskTeam>) taskTeamFuture.get();
-            } catch (InterruptedException ie) {
-                ie.printStackTrace();
-            } catch (ExecutionException ee) {
-                ee.printStackTrace();
-            }
+            SharedPreferences.Editor preferencesEditor = preferences.edit();
+            String usernameString = editUsernameText.getText().toString();
 
-            TaskTeam selectedTeam = taskTeam.stream().filter(team -> team.getName().equals(selectedTaskTeamStringName)).findAny().orElseThrow(RuntimeException::new);
+            preferencesEditor.putString(USER_USERNAME_TAG, usernameString);
+            preferencesEditor.putString(CHOOSE_TEAM_TAG, selectedTaskTeamStringName);
+            preferencesEditor.apply();
 
-            Task newTask = Task.builder()
-                    .title(((EditText)findViewById(R.id.editTextTaskTitle)).getText().toString())
-                    .body(((EditText)findViewById(R.id.editTextTaskBody)).getText().toString())
-                    .state((TaskStateEnum) chooseTeamSpinner.getSelectedItem())
-                    .taskTeam(selectedTeam)
-                    .build();
-            Amplify.API.query(
-                    ModelQuery.list(TaskTeam.class),
-                    success ->
-                            Log.i(TAG, "queried a task successfully"),
-                    failure -> Log.e(TAG,"Failed to query task", failure)
-            );
-
+            Snackbar.make(findViewById(R.id.activitySettingsPage), "Preferences Updated!", Snackbar.LENGTH_SHORT).show();
         });
     }
 }

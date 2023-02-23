@@ -41,5 +41,11 @@
     <string name="choose_option">choose option</string>
     <string name="choose_option1">Choose Option</string>
     <string name="choose_team">Choose team</string>
+    <string name="viewing_tasks_for">Viewing Tasks for:</string>
+    <string name="task_team">Task Team</string>
+    <string name="title">Title</string>
+    <string name="stateTaskDetail">State</string>
+    <string name="stateo">stateo</string>
+    <string name="stateod">State</string>
 
 </resources>
