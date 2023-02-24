@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".taskmaster.activities.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#233442"
+    tools:context=".taskmaster.activities.MainActivity">
 
     <TextView
         android:id="@+id/textView2"
@@ -14,7 +15,7 @@ tools:context=".taskmaster.activities.MainActivity">
         android:layout_marginTop="16dp"
         android:layout_marginBottom="72dp"
         android:text="@string/add_task"
-        android:textColor="#46287C"
+        android:textColor="#8E5DE6"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +23,8 @@ tools:context=".taskmaster.activities.MainActivity">
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.059" />
+        app:layout_constraintVertical_bias="0.059"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/AddTaskButton"
@@ -48,13 +50,14 @@ tools:context=".taskmaster.activities.MainActivity">
         android:layout_marginEnd="144dp"
         android:layout_marginBottom="144dp"
         android:text="@string/task_title"
-        android:textColor="#6D207A"
+        android:textColor="#8E5DE6"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/AddTaskButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/editTextTaskTitle"
@@ -75,7 +78,7 @@ tools:context=".taskmaster.activities.MainActivity">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.0"
-        tools:ignore="ContentDescription,EditableContentDescCheck" />
+        tools:ignore="ContentDescription,EditableContentDescCheck,TextContrastCheck" />
 
     <EditText
         android:id="@+id/editTextTaskBody"
@@ -96,7 +99,7 @@ tools:context=".taskmaster.activities.MainActivity">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTaskTitle"
         app:layout_constraintVertical_bias="1.0"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
 
     <TextView
         android:id="@+id/textView3"
@@ -106,39 +109,15 @@ tools:context=".taskmaster.activities.MainActivity">
         android:layout_marginTop="16dp"
         android:layout_marginEnd="207dp"
         android:text="@string/task_description"
-        android:textColor="#522C97"
+        android:textColor="#8E5DE6"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextTaskBody"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTaskTitle"
-        app:layout_constraintVertical_bias="0.173" />
-
-<TextView
-    android:id="@+id/textView4"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="69dp"
-    android:layout_marginTop="63dp"
-    android:layout_marginEnd="256dp"
-    android:layout_marginBottom="60dp"
-    android:text="@string/total_tasks_0"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/AddTaskButton" />
-
-    <TextView
-        android:id="@+id/textViewAddTaskActivitySubmitted"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="261dp"
-        android:text="@string/submitted"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddTaskButton" />
+        app:layout_constraintVertical_bias="0.173"
+        tools:ignore="TextContrastCheck" />
 
     <Spinner
         android:id="@+id/TaskStateSpinner"
@@ -156,12 +135,41 @@ tools:context=".taskmaster.activities.MainActivity">
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="1dp"
         android:contentDescription="@string/choose_option1"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TaskStateSpinner" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="@string/enter_task_status"
+        android:textColor="#8E5DE6"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/TaskStateSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:text="@string/enter_task_team_assignment"
+        android:textColor="#8E5DE6"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/TaskTeamSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

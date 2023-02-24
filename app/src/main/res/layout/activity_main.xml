@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#233442"
     tools:context=".taskmaster.activities.MainActivity">
 
 
@@ -16,6 +17,7 @@
         android:layout_marginEnd="248dp"
         android:text="@string/my_tasks"
         android:textSize="28sp"
+        android:textColor="#A01ED6"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -59,7 +61,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="624dp"
-        android:background="#47A9D1"
+        android:background="#E09DEC"
         android:contentDescription="@string/clickable_settings_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +83,7 @@
         android:hint="@string/usernameEdit"
         android:text="@string/username"
         android:textAllCaps="false"
-        android:textColor="#315277"
+        android:textColor="#E09DEC"
         android:textColorHint="#131010"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -97,7 +99,7 @@
         android:layout_marginBottom="21dp"
         android:shadowColor="#4493C8"
         android:text="@string/welcome"
-        android:textColor="#13667C"
+        android:textColor="#A01ED6"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
@@ -109,6 +111,7 @@
         android:layout_height="414dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="116dp"
+        android:textColor="#F1EEEE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -118,6 +121,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
         android:text="@string/viewing_tasks_for"
+        android:textColor="#A01ED6"
         app:layout_constraintEnd_toStartOf="@+id/taskTeamChosenTexttView"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -125,7 +129,9 @@
         android:id="@+id/taskTeamChosenTexttView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="77dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="76dp"
+        android:textColor="#E09DEC"
         android:text="@string/task_team"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/activityMainUsernameDisplay" />

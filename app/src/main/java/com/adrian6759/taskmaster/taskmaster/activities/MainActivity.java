@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,8 +16,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 
@@ -25,36 +24,23 @@ import com.adrian6759.taskmaster.taskmaster.adapter.TasksRecyclerViewAdapter;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
-import com.amplifyframework.datastore.generated.model.TaskStateEnum;
+
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TASKS_ADD_EXTRA_TAG = "taskDetail";
-    public static final String DATABASE_NAME = "TaskMaster";
     public static final String TAG = "mainActivity";
         List<Task> tasksList;
         TasksRecyclerViewAdapter adapter;
-    private String teamChosen;
+//    private String teamChosen;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        //HARDCODE Test for RecycleView
-//        tasksList = new ArrayList<>();
-//        Task newTask = Task.builder()
-//                .title("Task 1")
-//                .body("Do the task")
-//                .state(TaskStateEnum.Assigned)
-//                .build();
-
-//        tasksList.add(newTask);
 
         setupRecyclerView();
         setupButtons();
@@ -72,9 +58,8 @@ public class MainActivity extends AppCompatActivity {
                         for (Task databaseTask : success.getData()) {
                             String selectedTaskTeamStringName = teamChosen;
                             if (databaseTask.getTaskTeam() != null){
-
-                            if(databaseTask.getTaskTeam().getName().equals(selectedTaskTeamStringName))
-                            tasksList.add(databaseTask);
+                                if(databaseTask.getTaskTeam().getName().equals(selectedTaskTeamStringName))
+                                tasksList.add(databaseTask);
                             }
                         }
                         runOnUiThread(() -> adapter.notifyDataSetChanged());
@@ -84,15 +69,14 @@ public class MainActivity extends AppCompatActivity {
             );
 
 
-//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
 
             String userName = preferences.getString(USER_USERNAME_TAG, "no username");
             ((TextView)findViewById(R.id.activityMainUsernameDisplay)).setText(userName);
-//            String teamChosen = preferences.getString(CHOOSE_TEAM_TAG, "no team chosen");
             ((TextView)findViewById(R.id.taskTeamChosenTexttView)).setText(teamChosen);
         }
 
-    //Grab the recyclerview
+
     public void setupRecyclerView() {
         tasksList = new ArrayList<>();
 
@@ -100,8 +84,7 @@ public class MainActivity extends AppCompatActivity {
         //Set the layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         tasksRecyclerView.setLayoutManager(layoutManager);
-        //Create and attach the RecyclerView.Adapter
-        //Hand in some data
+
         adapter = new TasksRecyclerViewAdapter(tasksList, this);
         tasksRecyclerView.setAdapter(adapter);
 
@@ -120,20 +103,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToAddTaskIntent);
         });
         Button allTasksIntentButton = (Button) findViewById(R.id.allTasksIntentButton);
-        //Step 2: Set on Click Listener
         allTasksIntentButton.setOnClickListener(v -> {
-            //Step:3 Define Our onClick() Callback
             Intent goToAllTasksIntent = new Intent(this, AllTasksActivity.class);
-            //Step 4: Define logic to be run
             startActivity(goToAllTasksIntent);
         });
 
         ImageView settingsButton = (ImageView) findViewById(R.id.activityMainSettingsButton);
-        //Step 2: Set on Click Listener
         settingsButton.setOnClickListener(v -> {
-            //Step:3 Define Our onClick() Callback
             Intent goToSettingsIntent = new Intent(this, SettingsActivity.class);
-            //Step 4: Define logic to be run
             startActivity(goToSettingsIntent);
         });
     }

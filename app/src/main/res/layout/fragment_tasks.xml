@@ -5,6 +5,7 @@
     android:id="@+id/fragment_tasks"
     android:layout_width="400dp"
     android:layout_height="128dp"
+    android:background="#233442"
     tools:context=".taskmaster.fragments.TasksFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -16,6 +17,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:text="@string/tasks"
+        android:textColor="#EDEAEA"
         app:layout_constraintEnd_toStartOf="@+id/TasksFragmentTextViewBody"
         app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +30,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="64dp"
         android:text="@string/body"
+        android:textColor="#EDEAEA"
         app:layout_constraintEnd_toStartOf="@+id/TasksFragmentTextViewState"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,6 +41,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="64dp"
         android:text="@string/state"
+        android:textColor="#EDEAEA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
