@@ -47,5 +47,9 @@
     <string name="stateTaskDetail">State</string>
     <string name="stateo">stateo</string>
     <string name="stateod">State</string>
+    <string name="task_descriptiono">Task Description:</string>
+    <string name="status">Status:</string>
+    <string name="enter_task_status">Enter Task Status</string>
+    <string name="enter_task_team_assignment">Enter Task Team Assignment</string>
 
 </resources>

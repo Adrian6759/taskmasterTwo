@@ -5,6 +5,7 @@
     android:id="@+id/activitySettingsPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#363C3C"
     tools:context=".taskmaster.activities.SettingsActivity">
 
     <EditText
@@ -35,7 +36,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:text="@string/username"
-        android:textColor="#0B0B0B"
+        android:textColor="#F6F3F3"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/activitySettingsSaveButton"
         app:layout_constraintEnd_toStartOf="@+id/activitySettingsEditTextUsername"
@@ -49,7 +50,9 @@
         android:layout_width="140dp"
         android:layout_height="64dp"
         android:layout_marginBottom="267dp"
+        android:backgroundTint="#F1EEEE"
         android:text="@string/save"
+        android:textColor="#373232"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -68,4 +71,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activitySettingsEditTextUsername" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="129dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="313dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activitySettingsSaveButton"
+        app:srcCompat="@android:mipmap/sym_def_app_icon"
+        tools:srcCompat="@android:mipmap/sym_def_app_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
