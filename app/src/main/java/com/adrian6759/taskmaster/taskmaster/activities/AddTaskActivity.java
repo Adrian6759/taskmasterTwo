@@ -107,19 +107,3 @@ public class AddTaskActivity extends AppCompatActivity {
     }
 }
 
-        //Builder Pattern
-//        TaskTeam taskTeam1 = TaskTeam.builder()
-//                .name("TaskTeam1")
-//                .build();
-//        TaskTeam taskTeam2 = TaskTeam.builder()
-//                .name("TaskTeam2")
-//                .build();
-//        TaskTeam taskTeam3 = TaskTeam.builder()
-//                .name("TaskTeam3")
-//                .build();
-//        Amplify.API.mutate(
-//                ModelMutation.create(taskTeam1),
-//                success -> {},
-//                failure -> {});
-
-//        );
