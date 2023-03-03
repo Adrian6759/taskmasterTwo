@@ -23,14 +23,16 @@ public class VerifySignUp extends AppCompatActivity {
         callingIntent = getIntent();
 
         Intent callingIntent = getIntent();
-        String taskTitle = null;
-        String taskBody = null;
-        String taskState = null;
-        if (callingIntent != null) {
-            taskTitle = callingIntent.getStringExtra(TasksRecyclerViewAdapter.TASKS_TITLE_TAG);
-            taskBody = callingIntent.getStringExtra(TasksRecyclerViewAdapter.TASKS_BODY_TAG);
-            taskState = callingIntent.getStringExtra(TasksRecyclerViewAdapter.TASKS_STATE_TAG);
-        }
+        //TODO: If signing up do i need this code below?
+//        String taskTitle = null;
+//        String taskBody = null;
+//        String taskState = null;
+//        if (callingIntent != null) {
+//            taskTitle = callingIntent.getStringExtra(TasksRecyclerViewAdapter.TASKS_TITLE_TAG);
+//            taskBody = callingIntent.getStringExtra(TasksRecyclerViewAdapter.TASKS_BODY_TAG);
+//            taskState = callingIntent.getStringExtra(TasksRecyclerViewAdapter.TASKS_STATE_TAG);
+//        }
+        setupConfirmationButton();
     }
 
     public void setupConfirmationButton(){
