@@ -3,10 +3,8 @@ package com.adrian6759.taskmaster.taskmaster.activities;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.documentfile.provider.DocumentFile;
 
 
 import android.annotation.SuppressLint;
@@ -122,8 +120,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
             Amplify.API.mutate(
                     ModelMutation.create(newTask),
-                    success ->
-                        Log.i(TAG, ".onCreate(): created a task successfully"),
+                    success -> Log.i(TAG, "Created a task successfully"),
                     failure -> Log.e(TAG,"Failed to create a task", failure)
             );
 
@@ -142,7 +139,7 @@ public class AddTaskActivity extends AppCompatActivity {
         activityResultLauncher.launch(imageFilePickingIntent);
     }
     private ActivityResultLauncher<Intent> getImagePickingActivityResultLauncher(){
-        ActivityResultLauncher imagePickingActivityResultLauncher = registerForActivityResult(
+        ActivityResultLauncher<Intent> imagePickingActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override

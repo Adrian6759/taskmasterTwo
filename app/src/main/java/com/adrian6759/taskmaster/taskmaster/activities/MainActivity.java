@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "mainActivity";
@@ -48,29 +50,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        // manual file upload to S3
-        File exampleFile = new File(getApplicationContext().getFilesDir(), "ExampleKey");
-
-        try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(exampleFile));
-                writer.append("Example file contents");
-                writer.close();
-            } catch (Exception exception) {
-                Log.e("MyAmplifyApp", "Upload failed", exception);
-            }
-
-        Amplify.Storage.uploadFile(
-                "ExampleKey",
-                exampleFile,
-                success -> Log.i(TAG, "FILE SUCCESSFULLY UPLOADED TO S3"),
-                failure -> Log.e(TAG, "FAILED TO UPLOAD FILE" + failure)
-        );
+//         manual file upload to S3
+//        File exampleFile = new File(getApplicationContext().getFilesDir(), "ExampleKey");
+//
+//        try {
+//                BufferedWriter writer = new BufferedWriter(new FileWriter(exampleFile));
+//                writer.append("Example file contents");
+//                writer.close();
+//            } catch (Exception exception) {
+//                Log.e("MyAmplifyApp", "Upload failed", exception);
+//            }
+//
+//        Amplify.Storage.uploadFile(
+//                "ExampleKey",
+//                exampleFile,
+//                success -> Log.i(TAG, "FILE SUCCESSFULLY UPLOADED TO S3"),
+//                failure -> Log.e(TAG, "FAILED TO UPLOAD FILE" + failure)
+//        );
 
         setupRecyclerView();
         setupButtons();
 
     }
-//        @SuppressLint("SuspiciousIndentation")
+
         @Override
         protected void onResume() {
             super.onResume();
@@ -118,6 +120,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void setupButtons(){
 
+        AtomicReference<String> username = new AtomicReference<>("");
+        // we need to get access to current auth user
+        Amplify.Auth.getCurrentUser(
+                success -> {
+                    Log.i(TAG, "Got current user");
+                    username.set(success.getUsername());
+                },
+                failure -> Log.i(TAG, "Did not get a current user" + failure)
+        );
+
+//        if (username.toString().equals("")) {
+//            // if auth user is null
+//            // show sign up and login buttons
+//            ((Button)findViewById(R.id.MainSignupButton)).setVisibility(View.VISIBLE);
+//            ((Button)findViewById(R.id.MainLoginButton)).setVisibility(View.VISIBLE);
+//            // hide logout bttn
+//        } else {
+//            ((Button)findViewById(R.id.MainSignupButton)).setVisibility(View.INVISIBLE);
+//            ((Button)findViewById(R.id.MainLoginButton)).setVisibility(View.INVISIBLE);
+//            // show logout bttn
+//        }
         //Add Event Listener for Click a Button
         //Step 1: Get element by ID
         Button addTaskIntentButton = (Button) findViewById(R.id.addTaskIntentButton);

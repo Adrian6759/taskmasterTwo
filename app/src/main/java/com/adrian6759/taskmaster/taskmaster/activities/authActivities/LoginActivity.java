@@ -42,12 +42,12 @@ public class LoginActivity extends AppCompatActivity {
             Amplify.Auth.signIn(
                     userEmail,
                     userPassword,
-                    success -> Log.i(TAG, "Signed In Successfully!"),
+                    success -> Log.i(TAG, "Signed In Successfully!"),//TODO: Keep failed login from going to main
                     failure -> Log.e(TAG, "Failed to sign in with email: " + userEmail + "with error code: " + failure )
             );
-
             Intent goToMainActivityIntent = new Intent(this, MainActivity.class);
             startActivity(goToMainActivityIntent);
+
 
 
         });
