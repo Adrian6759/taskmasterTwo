@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.adrian6759.taskmaster.R;
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
        callingActivity = getIntent();
 
         setupLoginButton();
+        setupButton();
     }
 
     public void setupLoginButton(){
@@ -31,11 +33,11 @@ public class LoginActivity extends AppCompatActivity {
 
             if (callingActivity !=  null) {
                 userEmail = callingActivity.getStringExtra(SignUpActivity.USER_EMAIL);
-                ((EditText) findViewById(R.id.editTextTextEmailAddress)).setText(userEmail);
+                ((EditText) findViewById(R.id.editTextTextEmailAddressLogin)).setText(userEmail);
             } else {
-                userEmail = ((EditText) findViewById(R.id.editTextTextEmailAddress)).getText().toString();
+                userEmail = ((EditText) findViewById(R.id.editTextTextEmailAddressLogin)).getText().toString();
             }
-            String userPassword = ((EditText) findViewById(R.id.editTextTextPassword)).getText().toString();
+            String userPassword = ((EditText) findViewById(R.id.editTextTextPasswordLogin)).getText().toString();
 
             Amplify.Auth.signIn(
                     userEmail,
@@ -49,5 +51,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
         });
+
     }
+    public void setupButton(){
+        Button mainSignupIntentButton  = (Button) findViewById(R.id.LoginSignUpButton);
+        mainSignupIntentButton.setOnClickListener(v -> {
+            Intent goToSignUpIntent = new Intent(this, SignUpActivity.class);
+            startActivity(goToSignUpIntent);
+    });
+}
 }

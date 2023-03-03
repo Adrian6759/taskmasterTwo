@@ -30,7 +30,9 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 
 
-
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,39 +47,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        // manual file upload to S3
+        File exampleFile = new File(getApplicationContext().getFilesDir(), "ExampleKey");
+
+        try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(exampleFile));
+                writer.append("Example file contents");
+                writer.close();
+            } catch (Exception exception) {
+                Log.e("MyAmplifyApp", "Upload failed", exception);
+            }
+
+        Amplify.Storage.uploadFile(
+                "ExampleKey",
+                exampleFile,
+                success -> Log.i(TAG, "FILE SUCCESSFULLY UPLOADED TO S3"),
+                failure -> Log.e(TAG, "FAILED TO UPLOAD FILE" + failure)
+        );
+
         setupRecyclerView();
         setupButtons();
 
-//        Amplify.Auth.signUp(
-//                "adrianosohernandez@gmail.com",
-//                "password",
-//                AuthSignUpOptions.builder()
-//                        .userAttribute(AuthUserAttributeKey.email(), "adrianosohernandez@gmail.com")
-//                        .userAttribute(AuthUserAttributeKey.nickname(), "Oso")
-//                        .build(),
-//                success -> Log.i(TAG, "Signed Up Successfully!"),
-//                failure -> Log.e(TAG, "Failed to signup with email: adrianosohernandez@gmail.com")
-//
-//        );
-//        Amplify.Auth.confirmSignUp(
-//                "adrianosohernandez@gmail.com",
-//                "697277",
-//                success -> Log.i(TAG, "Confirmed Sign Up Success!"),
-//                failure -> Log.e(TAG, "Confirmed sign up failure" + failure)
-//                );
-
-//        Amplify.Auth.signIn(
-//                "adrianosohernandez@gmail.com",
-//                "password",
-//                success -> Log.i(TAG, "Signed In Successfully!"),
-//                failure -> Log.e(TAG, "Failed to sign in with email: adrianosohernandez@gmail.com")
-//        );
-//        Amplify.Auth.fetchAuthSession(
-//                success -> Log.i(TAG, "Current Auth Session!"),
-//                failure -> Log.e(TAG, "Failed to fetch auth session" + failure)
-//        );
-
     }
+//        @SuppressLint("SuspiciousIndentation")
         @Override
         protected void onResume() {
             super.onResume();
@@ -156,5 +149,38 @@ public class MainActivity extends AppCompatActivity {
             Intent goToSignUpIntent = new Intent(this, SignUpActivity.class);
             startActivity(goToSignUpIntent);
         });
+        Button mainLogoutButton = (Button) findViewById(R.id.LogoutButton);
+        mainLogoutButton.setOnClickListener(v->{
+            Intent goToLoginIntent =  new Intent(this, LoginActivity.class);
+            startActivity(goToLoginIntent);
+                });
     }
 }
+//        Amplify.Auth.signUp(
+//                "adrianosohernandez@gmail.com",
+//                "password",
+//                AuthSignUpOptions.builder()
+//                        .userAttribute(AuthUserAttributeKey.email(), "adrianosohernandez@gmail.com")
+//                        .userAttribute(AuthUserAttributeKey.nickname(), "Oso")
+//                        .build(),
+//                success -> Log.i(TAG, "Signed Up Successfully!"),
+//                failure -> Log.e(TAG, "Failed to signup with email: adrianosohernandez@gmail.com")
+//
+//        );
+//        Amplify.Auth.confirmSignUp(
+//                "adrianosohernandez@gmail.com",
+//                "697277",
+//                success -> Log.i(TAG, "Confirmed Sign Up Success!"),
+//                failure -> Log.e(TAG, "Confirmed sign up failure" + failure)
+//                );
+
+//        Amplify.Auth.signIn(
+//                "adrianosohernandez@gmail.com",
+//                "password",
+//                success -> Log.i(TAG, "Signed In Successfully!"),
+//                failure -> Log.e(TAG, "Failed to sign in with email: adrianosohernandez@gmail.com")
+//        );
+//        Amplify.Auth.fetchAuthSession(
+//                success -> Log.i(TAG, "Current Auth Session!"),
+//                failure -> Log.e(TAG, "Failed to fetch auth session" + failure)
+//        );

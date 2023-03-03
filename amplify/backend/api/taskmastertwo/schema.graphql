@@ -14,7 +14,8 @@ title: String!
 body: String!
 taskTeamId: ID! @index(name: "byOwners", sortKeyFields: ["title"])
 state : TaskStateEnum
- taskTeam: TaskTeam @belongsTo(fields: ["taskTeamId"])
+taskTeam: TaskTeam @belongsTo(fields: ["taskTeamId"])
+s3ImageKey: String
 }
 
 enum TaskStateEnum{

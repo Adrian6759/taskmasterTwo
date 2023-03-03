@@ -15,6 +15,7 @@ import com.amplifyframework.core.Amplify;
 public class SignUpActivity extends AppCompatActivity {
     public static final String TAG = "sign_up_activity";
     public static final String USER_EMAIL = "user_email";
+    public static final String USER_PASSWORD = "user_password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         );
             Intent goToConfirmSignUpActivity = new Intent(this, VerifySignUp.class);
             goToConfirmSignUpActivity.putExtra(USER_EMAIL, userEmail);
+            goToConfirmSignUpActivity.putExtra(USER_PASSWORD, userPassword);
             startActivity(goToConfirmSignUpActivity);
         });
 
