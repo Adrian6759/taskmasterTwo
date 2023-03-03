@@ -119,6 +119,7 @@ public class AddTaskActivity extends AppCompatActivity {
                     .taskTeam(selectedTeam)
                     .s3ImageKey(s3ImageKey)
                     .build();
+
             Amplify.API.mutate(
                     ModelMutation.create(newTask),
                     success ->
