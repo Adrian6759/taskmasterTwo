@@ -23,6 +23,7 @@ public class TaskDetail extends AppCompatActivity {
         String taskBody;
         String taskState;
         String taskS3ImageKey = null;
+        String tasksLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +56,13 @@ public class TaskDetail extends AppCompatActivity {
             taskBody = callingIntent.getStringExtra(TasksRecyclerViewAdapter.TASKS_BODY_TAG);
             taskState = callingIntent.getStringExtra(TasksRecyclerViewAdapter.TASKS_STATE_TAG);
             taskS3ImageKey = callingIntent.getStringExtra(TasksRecyclerViewAdapter.TASK_IMAGE_KEY_TAG);
+            tasksLocation = callingIntent.getStringExtra(TasksRecyclerViewAdapter.TASK_LOCATION_TAG);
+
         }
         ((TextView)findViewById(R.id.activityTaskTitleViewText)).setText(taskTitle);
         ((TextView)findViewById(R.id.activityTaskBodyViewText)).setText(taskBody);
         ((TextView)findViewById(R.id.activityTaskStateViewText)).setText(taskState);
+        ((TextView)findViewById(R.id.TaskDetailsLocationView)).setText(tasksLocation);
 
     }
 }

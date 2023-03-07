@@ -54,6 +54,7 @@ import java.util.concurrent.ExecutionException;
 public class AddTaskActivity extends AppCompatActivity {
     public final static String TAG = "AddATaskActivity";
     private String s3ImageKey = "";
+    private String taskLocation = "";
     Spinner taskStateSpinner;
     Spinner taskTeamSpinner;
     CompletableFuture<List<TaskTeam>> taskTeamFuture = new CompletableFuture<>();
@@ -160,6 +161,7 @@ public class AddTaskActivity extends AppCompatActivity {
                                     1)
                             .get(0)
                             .getAddressLine(0);
+                    taskLocation = address;
                     Log.i(TAG, "Repeating CURRENT LOCATION is: " + address);
                 } catch (IOException ioe) {
                     Log.i(TAG, "Could not get location" + ioe);
@@ -215,6 +217,7 @@ public class AddTaskActivity extends AppCompatActivity {
                     .state((TaskStateEnum) taskStateSpinner.getSelectedItem())
                     .taskTeam(selectedTeam)
                     .s3ImageKey(s3ImageKey)
+                    .location(taskLocation)
                     .build();
 
             Amplify.API.mutate(
