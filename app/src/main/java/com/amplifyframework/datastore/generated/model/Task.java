@@ -33,12 +33,14 @@ public final class Task implements Model {
   public static final QueryField STATE = field("Task", "state");
   public static final QueryField TASK_TEAM = field("Task", "taskTeamId");
   public static final QueryField S3_IMAGE_KEY = field("Task", "s3ImageKey");
+  public static final QueryField LOCATION = field("Task", "location");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String", isRequired = true) String body;
   private final @ModelField(targetType="TaskStateEnum") TaskStateEnum state;
   private final @ModelField(targetType="TaskTeam") @BelongsTo(targetName = "taskTeamId", targetNames = {"taskTeamId"}, type = TaskTeam.class) TaskTeam taskTeam;
   private final @ModelField(targetType="String") String s3ImageKey;
+  private final @ModelField(targetType="String") String location;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String resolveIdentifier() {
@@ -69,6 +71,10 @@ public final class Task implements Model {
       return s3ImageKey;
   }
   
+  public String getLocation() {
+      return location;
+  }
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -77,13 +83,14 @@ public final class Task implements Model {
       return updatedAt;
   }
   
-  private Task(String id, String title, String body, TaskStateEnum state, TaskTeam taskTeam, String s3ImageKey) {
+  private Task(String id, String title, String body, TaskStateEnum state, TaskTeam taskTeam, String s3ImageKey, String location) {
     this.id = id;
     this.title = title;
     this.body = body;
     this.state = state;
     this.taskTeam = taskTeam;
     this.s3ImageKey = s3ImageKey;
+    this.location = location;
   }
   
   @Override
@@ -100,6 +107,7 @@ public final class Task implements Model {
               ObjectsCompat.equals(getState(), task.getState()) &&
               ObjectsCompat.equals(getTaskTeam(), task.getTaskTeam()) &&
               ObjectsCompat.equals(getS3ImageKey(), task.getS3ImageKey()) &&
+              ObjectsCompat.equals(getLocation(), task.getLocation()) &&
               ObjectsCompat.equals(getCreatedAt(), task.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), task.getUpdatedAt());
       }
@@ -114,6 +122,7 @@ public final class Task implements Model {
       .append(getState())
       .append(getTaskTeam())
       .append(getS3ImageKey())
+      .append(getLocation())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -130,6 +139,7 @@ public final class Task implements Model {
       .append("state=" + String.valueOf(getState()) + ", ")
       .append("taskTeam=" + String.valueOf(getTaskTeam()) + ", ")
       .append("s3ImageKey=" + String.valueOf(getS3ImageKey()) + ", ")
+      .append("location=" + String.valueOf(getLocation()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -155,6 +165,7 @@ public final class Task implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -165,7 +176,8 @@ public final class Task implements Model {
       body,
       state,
       taskTeam,
-      s3ImageKey);
+      s3ImageKey,
+      location);
   }
   public interface TitleStep {
     BodyStep title(String title);
@@ -183,6 +195,7 @@ public final class Task implements Model {
     BuildStep state(TaskStateEnum state);
     BuildStep taskTeam(TaskTeam taskTeam);
     BuildStep s3ImageKey(String s3ImageKey);
+    BuildStep location(String location);
   }
   
 
@@ -193,6 +206,7 @@ public final class Task implements Model {
     private TaskStateEnum state;
     private TaskTeam taskTeam;
     private String s3ImageKey;
+    private String location;
     @Override
      public Task build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -203,7 +217,8 @@ public final class Task implements Model {
           body,
           state,
           taskTeam,
-          s3ImageKey);
+          s3ImageKey,
+          location);
     }
     
     @Override
@@ -238,6 +253,12 @@ public final class Task implements Model {
         return this;
     }
     
+    @Override
+     public BuildStep location(String location) {
+        this.location = location;
+        return this;
+    }
+    
     /**
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -250,13 +271,14 @@ public final class Task implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String title, String body, TaskStateEnum state, TaskTeam taskTeam, String s3ImageKey) {
+    private CopyOfBuilder(String id, String title, String body, TaskStateEnum state, TaskTeam taskTeam, String s3ImageKey, String location) {
       super.id(id);
       super.title(title)
         .body(body)
         .state(state)
         .taskTeam(taskTeam)
-        .s3ImageKey(s3ImageKey);
+        .s3ImageKey(s3ImageKey)
+        .location(location);
     }
     
     @Override
@@ -282,6 +304,11 @@ public final class Task implements Model {
     @Override
      public CopyOfBuilder s3ImageKey(String s3ImageKey) {
       return (CopyOfBuilder) super.s3ImageKey(s3ImageKey);
+    }
+    
+    @Override
+     public CopyOfBuilder location(String location) {
+      return (CopyOfBuilder) super.location(location);
     }
   }
   

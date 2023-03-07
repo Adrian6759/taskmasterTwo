@@ -22,6 +22,7 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
     public static final String TASKS_BODY_TAG = "tasksBody";
     public static final String TASKS_STATE_TAG = "tasksState";
     public static final String TASK_IMAGE_KEY_TAG = "task_image_key";
+    public static final String TASK_LOCATION_TAG = "task_location";
     //In the RecyclerViewAdapter class, at the top:
     Context callingActivity;
 
@@ -52,6 +53,7 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
         String tasksBody = tasksList.get(position).getBody();
         String tasksState = String.valueOf(tasksList.get(position).getState());
         String tasksS3ImageKey = tasksList.get(position).getS3ImageKey();
+        String tasksLocation = tasksList.get(position).getLocation();
         taskFragTitleView.setText((position+1) + ". " + tasksTitle);
         tasksFragNameViewBody.setText(tasksBody);
         tasksFragNameViewState.setText(tasksState);
@@ -63,6 +65,7 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
             goToTaskDetailsIntent.putExtra(TASKS_BODY_TAG, tasksBody);
             goToTaskDetailsIntent.putExtra(TASKS_STATE_TAG, tasksState);
             goToTaskDetailsIntent.putExtra(TASK_IMAGE_KEY_TAG, tasksS3ImageKey);
+            goToTaskDetailsIntent.putExtra(TASK_LOCATION_TAG, tasksLocation);
             callingActivity.startActivity(goToTaskDetailsIntent);
         });
     }
