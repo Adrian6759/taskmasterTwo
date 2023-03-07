@@ -20,6 +20,12 @@
       },
       "storage": {
         "s370caeba4": {}
+      },
+      "analytics": {
+        "taskmastertwo": {}
+      },
+      "predictions": {
+        "speechGenerator2a1b19a8": {}
       }
     }
   }

@@ -30,7 +30,9 @@ android {
 
 dependencies {
     implementation 'com.amplifyframework:aws-storage-s3:2.2.2'
+    implementation 'com.amplifyframework:aws-predictions:2.2.2'
     implementation 'com.amplifyframework:aws-auth-cognito:2.2.2'
+    implementation 'com.amplifyframework:aws-analytics-pinpoint:2.2.2'
     implementation 'com.amplifyframework:aws-api:2.2.2'
     implementation 'com.amplifyframework:aws-datastore:2.2.2'
     implementation 'androidx.activity:activity-ktx:1.6.1'
